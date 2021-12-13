@@ -60,7 +60,7 @@ app.post('/login', function (req, res) {
                 if (ipAddrs.get(req.ip)[1] < 3) {
                     ipAddrs.set(req.ip, [Date.now(), ipAddrs.get(req.ip)[1] + 1]);
                 } else {
-                    res.redirect("/blocked");
+                    res.redirect(302, "blocked");
                 }
             }
         }
