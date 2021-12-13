@@ -69,7 +69,10 @@ app.post('/login', function (req, res) {
     console.log(req.ip);
     var username = req.body.username;
     var password = req.body.password;
-    if ((username == 'bob') && (password == 'password4')) {
+    if ((username != 'bob') && (password !== 'password4')) {
+        console.log(req.body);
+        res.sendFile(path.join(__dirname, 'public', 'login.html'));
+    } else {
         ipAddrs.delete(req.ip);
         auth.signInUser(res, username);
 
@@ -79,9 +82,6 @@ app.post('/login', function (req, res) {
         } else {
             res.redirect("/");
         }
-    } else {
-		console.log(req.body);
-        res.sendFile(path.join(__dirname, 'public', 'login.html'));
     }
 });
 
