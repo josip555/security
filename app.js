@@ -26,6 +26,11 @@ app.get('/', function (req, res) {
     });
 });
 
+app.get('/messageboard', function (req, res) {
+    res.sendFile(path.join(__dirname, 'public', 'messageboard.html'));
+    console.log('GET /messageboard recieved.');
+});
+
 app.get('/login', function (req, res) {
     res.sendFile(path.join(__dirname, 'public', 'login.html'));
     console.log('GET /login recieved.');
