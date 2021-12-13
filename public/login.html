@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="icon" href="security.png">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+
+<body>
+
+    <header>
+        <div class="row" style="background-color:#ddd">
+            <h1 style="padding-left: 15px; padding-right: 15px; text-align: center;">Web Security Vulnerabilities Demo
+            </h1>
+        </div>
+    </header>
+
+    <div class="row" style="background-color:#ddd">
+        <div class="column-bg left" style="background-color:#ddd; text-align: center;">
+            <div style="padding-left: 15px; padding-right: 15px;">
+                <h2 style="text-align: center;">Login</h2>
+            </div>
+            <form action="/login" method="post">
+                <input id="username" type="text" name="username" required="required" placeholder="Username" />
+                </br></br>
+                <input id="password" type="password" name="password" required="required" placeholder="Password" />
+                </br></br>
+                <input id="submit" type="submit" value="Login" id="login-form-submit" />
+            </form>
+            </br>
+            <div style="text-align: center;" id="message">If username and/or password is not correct, this page will be
+                refreshed.</div>
+        </div>
+        <div class="column-bg right" style="background-color:#eee">
+            <div style="padding-left: 15px; padding-right: 15px;">
+                <h3>Vulnerabilities</h3>
+            </div>
+            <div class="row">
+                <label class="column switch">
+                    <input id="BA" type="checkbox" onclick="toggle('BA')">
+                    <span class="slider round"></span>
+                </label>
+                <div class="column">Broken Authentication</div>
+            </div>
+            <div class="row">
+                <label class="column switch">
+                    <input id="XSS" type="checkbox" onclick="toggle('XSS')">
+                    <span class="slider round"></span>
+                </label>
+                <div class="column">Cross-site scripting</div>
+            </div>
+            <div class="row">
+                <label class="column switch">
+                    <input id="CSRF" type="checkbox" onclick="toggle('CSRF')">
+                    <span class="slider round"></span>
+                </label>
+                <div class="column">Cross-site Request Forgery</div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="row" style="background-color:#eee">
+            <a href="/" style="padding:10px">Home</a>
+            <a href="/login" style="padding:10px">Login</a>
+            <a href="/private" style="padding:10px">Private</a>
+        </div>
+    </footer>
+
+    <script src='scripts.js'></script>
+
+</body>
+
+</html>
