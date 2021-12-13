@@ -23,6 +23,15 @@
         <div class="column-bg left" style="background-color:#ddd; text-align: center;">
             <div style="padding-left: 15px; padding-right: 15px;">
                 <h2>Message board</h2>
+                <form action="/messages" method="post">
+                    <input id="message" type="text" name="message" required="required" placeholder="Type in your message" />
+                    </br></br>
+                    <input id="submit" type="submit" value="Send message" />
+                </form>
+                </br>
+                <div id=messageboard class="row" style="background-color:#eee">
+                    <div id=messagebox class="row" style="background-color:#ddd; visibility: hidden;"></div>
+                </div>
             </div>
         </div>
         <div class="column-bg right" style="background-color:#eee">

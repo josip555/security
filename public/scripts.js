@@ -18,10 +18,34 @@ else{
 
 fetchSettings();
 
+if (document.getElementById("messageboard")) {
+    fetchMessages();
+}
+
 function getCookie(name) {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
     if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+async function fetchMessages() {
+    try {
+        const res = await fetch('/messages');
+        const messages = await res.json();
+        console.log(messages);
+
+        var node = document.getElementById("messagebox").cloneNode();
+
+        // for each setting (BA,XSS...) read value and assign it to toggler
+        messages.forEach(msg => {
+            var clone = node.cloneNode();
+            clone.innerHTML = msg.message;
+            clone.style.visibility = "visible";
+            document.getElementById("messageboard").appendChild(clone);
+        });
+    } catch (e) {
+        console.log(`fetching messages failed.${e}`);
+    }
 }
 
 async function fetchSettings() {

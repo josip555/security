@@ -31,6 +31,27 @@ app.get('/messageboard', function (req, res) {
     console.log('GET /messageboard recieved.');
 });
 
+var messages = [];
+
+app.get('/messages', function (req, res) {
+    res.send(JSON.stringify(messages));
+    console.log('Messages sent...');
+    res.redirect("/messageboard");
+});
+
+app.post('/messages', function (req, res) {
+    let message = req.body;
+    console.log(`POST /messages recieved ${message}.`);
+    messages.push(message);
+    console.log(messages);
+    res.redirect("/messageboard");
+});
+
+app.delete('/messages', function (req, res) {
+    messages = [];
+    res.redirect("/messageboard");
+});
+
 app.get('/login', function (req, res) {
     res.sendFile(path.join(__dirname, 'public', 'login.html'));
     console.log('GET /login recieved.');
