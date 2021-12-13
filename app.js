@@ -50,6 +50,7 @@ app.get('/blocked', function (req, res) {
 
 app.post('/login', function (req, res) {
     console.log(ipAddrs, ipAddrs.get(res.ip));
+    var redirects = false;
     if (!settings.get('BA')) {
         if (!ipAddrs.has(req.ip)) {
             ipAddrs.set(req.ip, [Date.now(), 1]);
@@ -61,27 +62,31 @@ app.post('/login', function (req, res) {
                     ipAddrs.set(req.ip, [Date.now(), ipAddrs.get(req.ip)[1] + 1]);
                 } else {
                     res.redirect(302, "blocked");
+                    res.end();
+                    redirects = true;
                 }
             }
         }
     }
 
-    console.log(req.ip);
-    var username = req.body.username;
-    var password = req.body.password;
-    if ((username == 'bob') && (password == 'password4')) {
-        ipAddrs.delete(req.ip);
-        auth.signInUser(res, username);
+    if (!redirects) {
+        console.log(req.ip);
+        var username = req.body.username;
+        var password = req.body.password;
+        if ((username == 'bob') && (password == 'password4')) {
+            ipAddrs.delete(req.ip);
+            auth.signInUser(res, username);
 
-        let returnUrl = req.query.returnUrl;
-        if (returnUrl !== undefined) {
-            res.redirect(returnUrl);
+            let returnUrl = req.query.returnUrl;
+            if (returnUrl !== undefined) {
+                res.redirect(returnUrl);
+            } else {
+                res.redirect("/");
+            }
         } else {
-            res.redirect("/");
+            console.log(req.body);
+            res.sendFile(path.join(__dirname, 'public', 'login.html'));
         }
-    } else {
-		console.log(req.body);
-        res.sendFile(path.join(__dirname, 'public', 'login.html'));
     }
 });
 
