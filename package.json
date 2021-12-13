@@ -1,0 +1,27 @@
+{
+  "name": "security",
+  "version": "1.0.0",
+  "description": "Drugi projekt iz predmeta WEB2",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "dependencies": {
+    "express": "*",
+    "nodemon": "*",
+    "cookie-parser": "*",
+    "dotenv": "*",
+    "body-parser": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/josip555/security.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/josip555/security/issues"
+  },
+  "homepage": "https://github.com/josip555/security#readme"
+}
